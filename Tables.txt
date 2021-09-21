@@ -1,0 +1,296 @@
+DROP TABLE T_PERSON CASCADE CONSTRAINTS;
+DROP TABLE T_EMPLOYEE CASCADE CONSTRAINTS;
+DROP TABLE T_PATIENT CASCADE CONSTRAINTS;
+DROP TABLE T_MONITORING CASCADE CONSTRAINTS;
+DROP TABLE T_OFFICE CASCADE CONSTRAINTS;
+DROP TABLE T_OFFICE_ROLE CASCADE CONSTRAINTS;
+DROP TABLE T_ROLE CASCADE CONSTRAINTS;
+DROP TABLE T_ROLE_PERMISSION CASCADE CONSTRAINTS;
+DROP TABLE T_PERMISSION CASCADE CONSTRAINTS;
+DROP TABLE T_PHONE CASCADE CONSTRAINTS;
+DROP TABLE T_ADDRESS CASCADE CONSTRAINTS;
+
+DROP SEQUENCE SQ_T_ADDRESS;
+DROP SEQUENCE SQ_T_EMPLOYEE;
+DROP SEQUENCE SQ_T_MONITORING;
+DROP SEQUENCE SQ_T_OFFICE;
+DROP SEQUENCE SQ_T_PATIENT;
+DROP SEQUENCE SQ_T_PERMISSION;
+DROP SEQUENCE SQ_T_PERSON;
+DROP SEQUENCE SQ_T_ROLE;
+DROP SEQUENCE SQ_T_TELEPHONE;
+DROP SEQUENCE SQ_T_ROLE_PERMISSION;
+DROP SEQUENCE SQ_T_OFFICE_ROLE;
+
+
+CREATE SEQUENCE SQ_T_ADDRESS
+	START WITH 	    1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_EMPLOYEE
+	START WITH 	    1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_MONITORING
+	START WITH 	    1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_OFFICE
+	START WITH 	    1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_PATIENT
+	START WITH 	    1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_PERMISSION
+	START WITH  	1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_PERSON
+	START WITH  	1
+	INCREMENT BY 	1
+	MAXVALUE 	    999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_ROLE
+	START WITH 	    1
+	INCREMENT BY 	1
+	MAXVALUE     	999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_TELEPHONE
+	START WITH   	1
+	INCREMENT BY 	1
+	MAXVALUE 	999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_ROLE_PERMISSION
+	START WITH   	1
+	INCREMENT BY 	1
+	MAXVALUE 	999
+	NOCACHE
+	NOCYCLE;
+
+CREATE SEQUENCE SQ_T_OFFICE_ROLE
+	START WITH   	1
+	INCREMENT BY 	1
+	MAXVALUE 	999
+	NOCACHE
+	NOCYCLE;
+
+
+
+CREATE TABLE t_address ( ---
+    id_address   NUMBER(10) NOT NULL,
+    nm_state     VARCHAR2(30) NOT NULL,
+    nm_city      VARCHAR2(60) NOT NULL,
+    nm_district  VARCHAR2(60) NOT NULL,
+    vl_cep       VARCHAR2(10) NOT NULL
+);
+
+ALTER TABLE t_address ADD CONSTRAINT t_address_pk PRIMARY KEY ( id_address );
+
+CREATE TABLE t_employee ( ---
+    id_employee  NUMBER(10) NOT NULL,
+    id_person    NUMBER(10) NOT NULL,
+    id_office    NUMBER(10) NOT NULL,
+    nm_user      VARCHAR2(100) NOT NULL,
+    ds_password  VARCHAR2(10) NOT NULL
+);
+
+ALTER TABLE t_employee ADD CONSTRAINT t_employee_pk PRIMARY KEY ( id_employee );
+
+CREATE TABLE t_monitoring ( ---
+    id_monitoring  NUMBER(10) NOT NULL,
+    id_employee    NUMBER(10) NOT NULL,
+    ds_log         VARCHAR2(100) NOT NULL,
+	flg_active     CHAR(1) NOT NULL
+);
+
+ALTER TABLE t_monitoring ADD CONSTRAINT t_monitoring_pk PRIMARY KEY ( id_monitoring );
+
+CREATE TABLE t_office ( ---
+    id_office  NUMBER(10) NOT NULL,
+    nm_office  VARCHAR2(60) NOT NULL,
+    ds_office  VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE t_office ADD CONSTRAINT t_office_pk PRIMARY KEY ( id_office );
+
+CREATE TABLE t_office_role (
+    id_office_role  NUMBER(10) NOT NULL,
+    id_office       NUMBER(10) NOT NULL,
+    id_role         NUMBER(10) NOT NULL
+);
+
+ALTER TABLE t_office_role ADD CONSTRAINT t_office_role_pk PRIMARY KEY ( id_office_role );
+
+CREATE TABLE t_patient ( ---
+    id_patient  NUMBER(10) NOT NULL,
+    id_person   NUMBER(10) NOT NULL,
+	id_monitoring NUMBER(10) NOT NULL
+);
+
+ALTER TABLE t_patient ADD CONSTRAINT t_patient_pk PRIMARY KEY ( id_patient );
+
+CREATE TABLE t_permission ( ---
+    id_permission  NUMBER(10) NOT NULL,
+    nm_permission  VARCHAR2(60) NOT NULL,
+    ds_permission  VARCHAR2(100) NOT NULL,
+    flg_active     CHAR(1) NOT NULL
+);
+
+ALTER TABLE t_permission ADD CONSTRAINT t_permission_pk PRIMARY KEY ( id_permission );
+
+CREATE TABLE t_person ( ---
+    id_person     NUMBER(10) NOT NULL,
+    id_address    NUMBER(10) NOT NULL,
+    id_phone      NUMBER(10) NOT NULL,
+    nm_person     VARCHAR2(60) NOT NULL,
+    dt_birthdate  DATE NOT NULL,
+    vl_sex        CHAR(1)
+);
+
+ALTER TABLE t_person ADD CONSTRAINT t_person_pk PRIMARY KEY ( id_person );
+
+CREATE TABLE t_phone ( ---
+    id_phone  NUMBER(10) NOT NULL,
+    vl_phone  VARCHAR2(30) NOT NULL,
+    ds_phone  VARCHAR2(30)
+);
+
+ALTER TABLE t_phone ADD CONSTRAINT t_phone_pk PRIMARY KEY ( id_phone );
+
+CREATE TABLE t_role (
+    id_role  NUMBER(10) NOT NULL,
+    nm_role  VARCHAR2(60) NOT NULL,
+    ds_role  VARCHAR2(100)
+);
+
+ALTER TABLE t_role ADD CONSTRAINT t_role_pk PRIMARY KEY ( id_role );
+
+CREATE TABLE t_role_permission (
+    id_role_permission  NUMBER(10) NOT NULL,
+    id_role             NUMBER(10) NOT NULL,
+    id_permission       NUMBER(10) NOT NULL
+);
+
+ALTER TABLE t_role_permission ADD CONSTRAINT t_role_permission_pk PRIMARY KEY ( id_role_permission );
+
+ALTER TABLE t_employee
+    ADD CONSTRAINT t_employee_t_office_fk FOREIGN KEY ( id_office )
+        REFERENCES t_office ( id_office );
+
+ALTER TABLE t_employee
+    ADD CONSTRAINT t_employee_t_person_fk FOREIGN KEY ( id_person )
+        REFERENCES t_person ( id_person );
+
+ALTER TABLE t_monitoring
+    ADD CONSTRAINT t_monitoring_t_employee_fk FOREIGN KEY ( id_employee )
+        REFERENCES t_employee ( id_employee );
+
+ALTER TABLE t_patient
+	ADD CONSTRAINT t_patient_t_monitoring_fk FOREIGN KEY ( id_monitoring)
+		REFERENCES t_monitoring ( id_monitoring );
+
+ALTER TABLE t_office_role
+    ADD CONSTRAINT t_office_role_t_office_fk FOREIGN KEY ( id_office )
+        REFERENCES t_office ( id_office );
+
+ALTER TABLE t_office_role
+    ADD CONSTRAINT t_office_role_t_role_fk FOREIGN KEY ( id_role )
+        REFERENCES t_role ( id_role );
+
+ALTER TABLE t_patient
+    ADD CONSTRAINT t_patient_t_person_fk FOREIGN KEY ( id_person )
+        REFERENCES t_person ( id_person );
+
+ALTER TABLE t_person
+    ADD CONSTRAINT t_person_t_address_fk FOREIGN KEY ( id_address )
+        REFERENCES t_address ( id_address );
+
+ALTER TABLE t_person
+    ADD CONSTRAINT t_person_t_phone_fk FOREIGN KEY ( id_phone )
+        REFERENCES t_phone ( id_phone );
+
+ALTER TABLE t_role_permission
+    ADD CONSTRAINT t_role_perm_t_perm_fk FOREIGN KEY ( id_permission )
+        REFERENCES t_permission ( id_permission );
+
+ALTER TABLE t_role_permission
+    ADD CONSTRAINT t_role_permission_t_role_fk FOREIGN KEY ( id_role )
+        REFERENCES t_role ( id_role );
+
+CREATE OR REPLACE TRIGGER arc_fkarc_1_t_patient BEFORE
+    INSERT OR UPDATE OF id_person ON t_patient
+    FOR EACH ROW
+DECLARE
+    d NUMBER(10);
+BEGIN
+    SELECT
+        a.id_person
+    INTO d
+    FROM
+        t_person a
+    WHERE
+        a.id_person = :new.id_person;
+
+    IF ( d IS NULL OR d <> :old.id_person ) THEN
+        raise_application_error(-20223, 'FK T_PATIENT_T_PERSON_FK in Table T_PATIENT violates Arc constraint on Table T_PERSON - discriminator column ID_PERSON doesn''t have value ID_PERSON');
+    END IF;
+
+EXCEPTION
+    WHEN no_data_found THEN
+        NULL;
+    WHEN OTHERS THEN
+        RAISE;
+END;
+/
+
+CREATE OR REPLACE TRIGGER arc_fkarc_1_t_employee BEFORE
+    INSERT OR UPDATE OF id_person ON t_employee
+    FOR EACH ROW
+DECLARE
+    d NUMBER(10);
+BEGIN
+    SELECT
+        a.id_person
+    INTO d
+    FROM
+        t_person a
+    WHERE
+        a.id_person = :new.id_person;
+
+    IF ( d IS NULL OR d <> :old.id_person) THEN
+        raise_application_error(-20223, 'FK T_EMPLOYEE_T_PERSON_FK in Table T_EMPLOYEE violates Arc constraint on Table T_PERSON - discriminator column ID_PERSON does not have value ID_PERSON');
+    END IF;
+
+EXCEPTION
+    WHEN no_data_found THEN
+        NULL;
+    WHEN OTHERS THEN
+        RAISE;
+END;
+/
