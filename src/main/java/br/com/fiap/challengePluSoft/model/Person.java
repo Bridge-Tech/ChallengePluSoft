@@ -31,7 +31,7 @@ public class Person {
 	@Size(max=30, message="A descrição do telefone deve ter no máximo 30 caracteres")
 	private String phoneDescription;*/
 
-	private LocalDate birthdate;
+	private String birthdate;
 	@Size( max=1 ,message="Esse valor so pode conter M - Masculino F - Feminino N - Prefiro Não identificar ")
 	private String sex;
 }
