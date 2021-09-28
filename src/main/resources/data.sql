@@ -1,3 +1,13 @@
+CREATE TABLE employee
+(
+  id INT PRIMARY KEY auto_increment,
+  user VARCHAR(60) NOT NULL,
+  password VARCHAR(100) NOT NULL
+ 
+);
+
+INSERT INTO employee (user, password ) VALUES ('Crocha', '$2a$12$CB9MpTjvXntnB3HEKs5xLO9SkstJQaljTQbMhso4dyC/pdPhRMtNS');
+
 CREATE TABLE permission
 (
   id INT PRIMARY KEY auto_increment,

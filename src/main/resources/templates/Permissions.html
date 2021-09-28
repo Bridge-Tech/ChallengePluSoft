@@ -22,6 +22,7 @@
 	      <th scope="col">Nome</th>
 	      <th scope="col">Descrição</th>
 	      <th scope="col">Está Ativa</th>
+	      <th scope="col">Opções</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -30,6 +31,7 @@
 	      <td th:text="${permission.name}"></td>
 	      <td th:text="${permission.description}"></td>
 	      <td th:text="${permission.isActive} ? 'N' : 'S'"></td> 
+	      <td><a class=" btn btn-secondary p-1 m-1 disabled"  type="button">Editar</a><a class="disable btn btn-danger p-1 m-1 disabled" th:href="${'/permission/delete/'+permission.id}"  type="button">Excluir</a></td>
 	    </tr>
 	  </tbody>
 	</table>
