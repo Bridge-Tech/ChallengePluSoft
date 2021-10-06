@@ -1,11 +1,10 @@
 package br.com.fiap.challengePluSoft.model;
-
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -26,6 +25,8 @@ public class Employee implements UserDetails{
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
+	@OneToOne
+	private Person idPerson; 
 	@NotBlank @Size(max=100, message="User não pode ter mais de 100 caracteres")
 	private String user;
 	@NotBlank @Size(max=10, min = 1,message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")

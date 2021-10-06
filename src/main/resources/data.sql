@@ -1,3 +1,14 @@
+CREATE TABLE person
+(
+  id INT PRIMARY KEY auto_increment,
+  name VARCHAR(60) NOT NULL,
+  birthdate VARCHAR(100) NOT NULL,
+  sex VARCHAR(1) NOT NULL
+ 
+);
+INSERT INTO person (name, birthdate, sex) VALUES ('Caio Rocha', '15/05/2001','M');
+
+
 CREATE TABLE employee
 (
   id INT PRIMARY KEY auto_increment,

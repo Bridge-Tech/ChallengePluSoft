@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:include="_template :: head"></head>
+<body>
+<div class="card">
+  <div class="card-header">
+    Nova Função
+  </div>
+  <div class="card-body">
+    <form class="row g-3 needs-validation" th:action="@{/roles}" method="post" th:object="${role}" novalidate>
+	  <div class="col-md-4">
+	    <label for="validationCustomName" class="form-label">Nome</label>
+	    <input type="text" class="form-control" th:field="*{name}" id="validationCustomName" required>
+	    <div class="valid-feedback">
+	      Muito Bom!
+	    </div>
+	  </div>
+	  <div class="col-md-4">
+	    <label for="validationCustomDescription" class="form-label">Descrição</label>
+	    <input type="text" class="form-control" th:field="*{description}" id="validationCustomDescription" required>
+	    <div class="valid-feedback">
+	      Muito Bom!
+	    </div>
+	  </div>
+	  <div class="col-12">
+	    <button class="btn btn-primary" type="submit">Cadastrar</button>
+	  </div>
+	</form>
+  </div>
+</div>
+	
+</body>
+</html>

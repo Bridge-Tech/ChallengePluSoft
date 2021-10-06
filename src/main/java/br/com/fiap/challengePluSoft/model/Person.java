@@ -3,10 +3,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-
 
 import lombok.Data;
 
@@ -17,6 +16,8 @@ public class Person {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	//@OneToOne(mappedBy = "idPerson")
+	//private Employee idEmployee;
 	@NotBlank(message = "Nome não pode se nulo/ vazio")
 	private String name;
 

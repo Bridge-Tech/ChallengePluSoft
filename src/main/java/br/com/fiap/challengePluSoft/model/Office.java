@@ -17,7 +17,9 @@ public class Office {
 	private Long id;
 	@NotBlank @Size(max=60)
 	private String name;
-	@NotBlank @Size(max=100)
+	@NotBlank @Size(max=200)
 	private String description;
 	
 }
+
+
