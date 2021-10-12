@@ -1,34 +1,68 @@
-CREATE TABLE person
-(
-  id INT PRIMARY KEY auto_increment,
-  name VARCHAR(60) NOT NULL,
-  birthdate VARCHAR(100) NOT NULL,
-  sex VARCHAR(1) NOT NULL
- 
-);
-INSERT INTO person (name, birthdate, sex) VALUES ('Caio Rocha', '15/05/2001','M');
 
-
-CREATE TABLE employee
-(
-  id INT PRIMARY KEY auto_increment,
-  user VARCHAR(60) NOT NULL,
-  password VARCHAR(100) NOT NULL
- 
+CREATE TABLE office(
+	id INT PRIMARY KEY auto_increment,
+  	name VARCHAR(60) NOT NULL,
+  	description VARCHAR(200) NOT NULL
 );
 
-INSERT INTO employee (user, password ) VALUES ('Crocha', '$2a$12$CB9MpTjvXntnB3HEKs5xLO9SkstJQaljTQbMhso4dyC/pdPhRMtNS');
+INSERT INTO office (name, description) VALUES('ENFERMEIRO','DEPARTAMENTO DE ENFERMARIA');
 
-CREATE TABLE permission
-(
-  id INT PRIMARY KEY auto_increment,
-  name VARCHAR(60) NOT NULL,
-  description VARCHAR(100) NOT NULL,
-  isActive BOOLEAN NOT NULL
+
+
+CREATE TABLE role(
+		id INT PRIMARY KEY auto_increment,
+  	name VARCHAR(60) NOT NULL,
+  	description VARCHAR(200) NOT NULL
 
 );
 
-INSERT INTO permission ( name, description, isActive) VALUES ('MASTER', 'PERMISSÃO DE ACESSO TOTAL DO SISTEMA', TRUE);
+INSERT INTO role (name, description) VALUES('Medico Cardiologista','Funcionário tem permissão de visualizar gráficos de pacientes');
+
+
+CREATE TABLE permission(
+	id INT PRIMARY KEY auto_increment,
+  	name VARCHAR(60) NOT NULL,
+  	description VARCHAR(200) NOT NULL,
+  	isActive BOOLEAN NOT NULL
+
+);
+INSERT INTO permission (name, description, isActive) VALUES('MASTER','PERMISSÃO MAXIMA DO SISTEMA', TRUE);
+INSERT INTO permission (name, description, isActive) VALUES('ADMIN','PERMISSÃO DE GERENCIAMENTO', TRUE);
+INSERT INTO permission (name, description, isActive) VALUES('MEDICO','PERMISSÃO PADRÃO PARA MEDICOS', TRUE);
+INSERT INTO permission (name, description, isActive) VALUES('ENFERMEIRO','PERMISSÃO PADRÃO PARA ENFERMARIA', TRUE);
+
+
+CREATE TABLE employee(
+	id INT PRIMARY KEY auto_increment,
+  	name VARCHAR(60) NOT NULL,
+  	birthdate VARCHAR(100)NOT NULL,
+  	sex VARCHAR(1) NOT NULL,
+	user VARCHAR(100) NOT NULL,
+	password VARCHAR(60) NOT NULL
+
+);
+
+INSERT INTO employee (name, birthdate, sex, user, password)VALUES('Caio Rocha','15/05/2001','M', 'Crocha','$2a$12$oMVEbJaxKM6kKWM3oWn4u.9RzCc/HtPpnPbtETbdyFHBmaC6uBgjm');
+INSERT INTO employee (name, birthdate, sex, user, password)VALUES('Lucas Gouget','14/07/2002','M','Lgouget','$2a$12$0.M/cdydmg4PQlvGlyCU7uSKr0A9Us07ybUpPaTpz2aaOr8oRTH8a');
+INSERT INTO employee (name, birthdate, sex, user, password)VALUES('Matheus Eduardo','11/06/1999','M','Meduardo','$2a$12$4ST29rJqH1HMs3kJxCBOCOWrt322OuLdu/5jrofUh3uKirAAP6QJK');
+
+
+
+CREATE TABLE patient(
+	id INT PRIMARY KEY auto_increment,
+  	name VARCHAR(64) NOT NULL,
+  	birthdate VARCHAR(100)NOT NULL,
+  	sex VARCHAR(1) NOT NULL,
+  	employee_id int
+);
+
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Gilberto','12/09/2001','M',1);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Allan','17/02/1967','M',null);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('João','11/06/1900','M' ,null);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Sahra','03/03/1971','F',1);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Drica','30/11/2004','F',null);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('João','12/12/2012','F',null);
+
 
 CREATE TABLE STATES
 (

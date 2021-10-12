@@ -19,17 +19,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(autheticationService)
-		.passwordEncoder(new BCryptPasswordEncoder());
+		.passwordEncoder(AuthenticationService.getPasswordEncoder());
 	}
 	
 	//autorização
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/people","offices/**","/permissions/**")
-		.authenticated().anyRequest()
-		.permitAll().and().formLogin()
-		//.and().csrf().disable()
+		http.authorizeRequests().antMatchers("/home","/offices","/office","/permissions","/permission","/employee","/patient/**","/patients","/role/**","/roles")///home","/offices","/office","/permissions","/permission","/employee","/patient/**","/patients","/role/**","/roles
+		.authenticated()
+		.anyRequest()
+		.permitAll()
+		.and().formLogin()
+		.defaultSuccessUrl("/home")
+		.and().csrf().disable()
 		;
+		
+		http.headers().frameOptions().disable();
 	}
 }

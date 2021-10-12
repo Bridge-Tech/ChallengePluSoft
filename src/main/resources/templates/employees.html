@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:include="_template :: head"></head>
+<body>
+	<div class="menu">
+		<div class="p-2 ">
+			<a class="nav-link active" aria-current="page" href="/home"><i class="bi bi-arrow-left-circle-fill"></i></a>
+		</div>
+	</div>
+	<div class="align-justify-center p-5 m-5" >
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Nome</th>
+		      <th scope="col">Data de Aniversário</th>
+		      <th scope="col">Genero</th>
+		      <th scope="col">Opções</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="employee : ${empoyees}">
+		      <th th:text="${employee.id}"></th>
+		      <td th:text="${employee.name}"></td>
+		      <td th:text="${employee.birthdate}"></td>
+		      <td th:text="${employee.sex}"></td>
+		      <td><a class="btn btn-secondary p-1 m-1" type="button">Editar</a><a class="btn btn-danger p-1 m-1" th:href="${'/employee/delete/'+employee.id}" type="button">Excluir</a></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</body>
+</html>

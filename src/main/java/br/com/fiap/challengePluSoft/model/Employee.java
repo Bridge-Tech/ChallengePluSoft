@@ -1,10 +1,11 @@
 package br.com.fiap.challengePluSoft.model;
 import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -25,12 +26,18 @@ public class Employee implements UserDetails{
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
-	@OneToOne
-	private Person idPerson; 
+	@NotBlank(message = "Nome não pode se nulo/ vazio")
+	private String name;
+	@NotBlank
+	private String birthdate;
+	@Size( max=1 ,message="Esse valor so pode conter M - Masculino F - Feminino N - Prefiro Não identificar ")
+	private String sex;
 	@NotBlank @Size(max=100, message="User não pode ter mais de 100 caracteres")
 	private String user;
-	@NotBlank @Size(max=10, min = 1,message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
+	@NotBlank @Size(max=60, min = 1,message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
 	private String password;
+	@ManyToOne
+	private Phone phone;
 	
 	
 	@Override
@@ -67,5 +74,10 @@ public class Employee implements UserDetails{
 		 * Conseguir Pegar da tabela Person e
 		 *  desabilitar as pessoas por aqui! */
 		return true;
+	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.password;
 	}
 }

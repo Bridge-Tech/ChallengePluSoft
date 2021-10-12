@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:include="_template :: head">
+<meta charset="UTF-8"></head>
+<body>
+<div class="card">
+  <div class="card-header">
+    Alterar Função
+  </div>
+  <div class="card-body">
+	
+	<div th:object="${roles}">
+		<form class="row g-3 needs-validation" th:action="${'/role/edit/'+id}" method="post" >
+			
+			<div class="col-md-4">
+				<label for="name">Nome</label>
+				<input class="form-control"  id="name" name="name" th:value="${name}">
+			</div>
+			
+			<div class="col-md-4">
+				<label for="description">Descrição</label>
+				<input  class="form-control"  id="description" type="text" name="description" th:value="${description}">
+			</div>
+			
+			<a href="/roles">Cancelar</a>
+		    <div class="col-12">
+		    	<button class="btn btn-primary" type="submit">Salvar</button>
+			</div>
+		
+		</form>
+	
+	</div>
+  </div>
+</div>
+</body>
+</html>

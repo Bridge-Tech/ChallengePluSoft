@@ -12,10 +12,11 @@ import lombok.Data;
 @Data
 @Entity
 public class Role {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY )
+	
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank @Size(max=60, message="Nome não pode ser maior que 60 caracteres")
 	private String name;
-	@Size(max=200, message="Descrição não pode ser maior que 100 caracteres")
+	@Size(max=300, message="Descrição não pode ser maior que 300 caracteres")
 	private String description;
 }

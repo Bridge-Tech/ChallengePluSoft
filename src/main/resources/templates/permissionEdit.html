@@ -5,29 +5,32 @@
 <body>
 <div class="card">
   <div class="card-header">
-    Nova Permissão
+    Atualiza Permissão
   </div>
   <div class="card-body">
-    <form class="row g-3 needs-validation" th:action="@{/permissions}" method="post" th:object="${permission}" novalidate>
+    <div th:object="${roles}">
+		<form class="row g-3 needs-validation" th:action="${'/role/edit/'+id}" method="post" >
 	  <div class="col-md-4">
 	    <label class="form-label">Nome</label>
-	    <input type="text" th:field="*{name}" class="form-control">
+	    <input type="text" th:value="${name}" class="form-control">
 	  </div>
 	  <div class="col-md-4">
 	    <label for="validationCustomDescription" class="form-label">Descrição</label>
-	    <input type="text" class="form-control" th:field="*{description}" >
+	    <input type="text" class="form-control" th:value="${description}" >
 	  </div>
  	  <div class="col-md-2">
 	    <label class="form-label">Permissão ativa?</label>
-	    <select class="form-control" th:field="*{isActive}" >
+	    <!-- <select class="form-control" th:field="*{isActive}" >
 	      <option th:value="1" th:text="Verdadeiro"></option>
 	      <option th:value="0" th:text="falso"></option>
-	    </select>
+	    </select> -->
 	  </div>
+	  <a href="/permissions">Cancelar</a>
 	  <div class="col-12">
-	    <button class="btn btn-primary" type="submit">Cadastrar</button>
+	  	<button class="btn btn-primary" type="submit">Salvar</button>
 	  </div>
 	</form>
+	</div>
   </div>
 </div>
 	

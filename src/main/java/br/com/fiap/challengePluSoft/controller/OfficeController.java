@@ -1,6 +1,7 @@
 package br.com.fiap.challengePluSoft.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,6 +46,33 @@ public class OfficeController {
 		return "redirect:offices";
 	}
 	
+	
+	@GetMapping("/office/edit/{id}")
+	public ModelAndView officeEdit(@PathVariable Long id) {
+		
+		ModelAndView modelAndView = new ModelAndView("officeEdit");
+		Optional<Office>optional = repository.findById(id);
+		Office offices  = optional.get();
+		modelAndView.addObject("officeEdit", offices);
+		return modelAndView;
+	}
+	
+	
+	@PostMapping("/office/edit/{id}")
+	public String edit(@Valid Office newOffice, BindingResult result, RedirectAttributes redirect) {
+		
+		if(result.hasErrors()) {
+			return "officeEdit";
+		}
+		Office office = newOffice;
+		office.setName(newOffice.getName());
+		office.setDescription(newOffice.getDescription());
+
+
+		repository.save(office); 
+		redirect.addFlashAttribute("message","Departamento atualizado com sucesso");
+		return "redirect:offices";
+	}
 	
 	
 	

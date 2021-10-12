@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head th:include="_template :: head"></head>
+<head th:include="_template :: head">
+<meta charset="UTF-8"></head>
 <body>
 <div class="card">
   <div class="card-header">
@@ -16,7 +17,7 @@
 	    </div>
 	  </div>
 	  <div class="col-md-4">
-	    <label for="validationCustomDescription" class="form-label">Descrição</label>
+	    <label for="validationCustomDescription" class="form-label">DescriÃ§Ã£o</label>
 	    <input type="text" class="form-control" th:field="*{description}" id="validationCustomDescription" required>
 	    <div class="valid-feedback">
 	      Muito Bom!
