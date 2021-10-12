@@ -20,9 +20,6 @@ public class Patient {
 	private String birthdate;
 	@Size( max=1 ,message="Esse valor so pode conter M - Masculino F - Feminino N - Prefiro Não identificar ")
 	private String sex;
-	
 	@ManyToOne
 	private Employee employee;
-	@ManyToOne
-	private Phone phone;
 }

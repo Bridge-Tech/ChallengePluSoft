@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head th:include="_template :: head"></head>
+<head th:include="_template :: head">
+<meta charset="UTF-8"></head>
 <body>
 	<div class="menu">
 		<div class="p-2 ">
@@ -13,13 +14,13 @@
 		    <tr>
 		      <th scope="col">#</th>
 		      <th scope="col">Nome</th>
-		      <th scope="col">Data de Aniversário</th>
+		      <th scope="col">Data de AniversÃ¡rio</th>
 		      <th scope="col">Genero</th>
-		      <th scope="col">Opções</th>
+		      <th scope="col">OpÃ§Ãµes</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr th:each="employee : ${empoyees}">
+		    <tr th:each="employee : ${employees}">
 		      <th th:text="${employee.id}"></th>
 		      <td th:text="${employee.name}"></td>
 		      <td th:text="${employee.birthdate}"></td>

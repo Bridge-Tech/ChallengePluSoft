@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head th:include="_template :: head"></head>
+<head th:include="_template :: head">
+<meta charset="UTF-8"></head>
 <body>
 	<div class="menu">
 		<div class="p-2 ">
@@ -14,9 +15,9 @@
 		    <tr>
 		      <th scope="col">#</th>
 		      <th scope="col">Nome</th>
-		      <th scope="col">Data de Aniversário</th>
+		      <th scope="col">Data de AniversÃ¡rio</th>
 		      <th scope="col">Genero</th>
-		      <th scope="col">Opções</th>
+		      <th scope="col">OpÃ§Ãµes</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -25,7 +26,8 @@
 		      <td th:text="${patient.name}"></td>
 		      <td th:text="${patient.birthdate}"></td>
 		      <td th:text="${patient.sex}"></td>
-		      <td><a class="btn btn-secondary p-1 m-1" type="button">Editar</a><a class="btn btn-info p-1 m-1"  th:href="${'/patient/analyzer/'+patient.id}" type="button">Ver mais</a><a class="btn btn-danger p-1 m-1" th:href="${'/patient/delete/'+patient.id}" type="button">Excluir</a></td>
+		      <td><a class="btn btn-secondary p-1 m-1" type="button">Editar</a><a class="btn btn-info p-1 m-1"  th:href="${'/patient/analyzer/'+patient.id}" type="button">Ver mais</a>
+		     <a  class="btn btn-warning p-1 m-1"  type="button">Tratar</a> <a class="btn btn-danger p-1 m-1" th:href="${'/patient/delete/'+patient.id}" type="button">Excluir</a></td>
 		    </tr>
 		  </tbody>
 		</table>

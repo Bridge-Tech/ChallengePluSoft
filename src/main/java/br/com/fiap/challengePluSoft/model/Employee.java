@@ -37,7 +37,7 @@ public class Employee implements UserDetails{
 	@NotBlank @Size(max=60, min = 1,message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
 	private String password;
 	@ManyToOne
-	private Phone phone;
+	private Permission permission;
 	
 	
 	@Override
