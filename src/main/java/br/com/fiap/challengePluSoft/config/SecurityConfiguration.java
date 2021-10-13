@@ -26,12 +26,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/home","/offices","/office","/permissions","/permission","/employee","/patient/**","/patients","/role/**","/roles")///home","/offices","/office","/permissions","/permission","/employee","/patient/**","/patients","/role/**","/roles
-		.authenticated()
+		http.authorizeRequests().antMatchers("/roles","/permission/**","/permissions","/role/**","/employee")
+			.hasRole("ADMIN")
+		.antMatchers("/home","/offices","/office","/patient/**","/patients")///home","/offices","/office","/permissions","/permission","/employee","/patient/**","/patients","/role/**","/roles
+			.authenticated()
 		.anyRequest()
-		.permitAll()
+			.permitAll()
 		.and().formLogin()
-		.defaultSuccessUrl("/home")
+			.defaultSuccessUrl("/home")
 		.and().csrf().disable()
 		;
 		

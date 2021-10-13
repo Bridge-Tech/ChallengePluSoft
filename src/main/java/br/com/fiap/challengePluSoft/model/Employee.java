@@ -2,9 +2,11 @@ package br.com.fiap.challengePluSoft.model;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -36,8 +38,8 @@ public class Employee implements UserDetails{
 	private String user;
 	@NotBlank @Size(max=60, min = 1,message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
 	private String password;
-	@ManyToOne
-	private Permission permission;
+	@ManyToMany(fetch= FetchType.EAGER)
+	private Collection<Role> roles;
 	
 	
 	@Override
@@ -45,7 +47,7 @@ public class Employee implements UserDetails{
 		/*
 		 * Conseguir Pegar da tabela Permission e
 		 *  colocar as permissoes nas pessoas por aqui! */
-		return null;
+		return this.roles;
 	}
 	@Override
 	public String getUsername() {

@@ -8,15 +8,41 @@ CREATE TABLE office(
 INSERT INTO office (name, description) VALUES('ENFERMEIRO','DEPARTAMENTO DE ENFERMARIA');
 
 
+CREATE TABLE employee(
+	id INT PRIMARY KEY auto_increment,
+  	name VARCHAR(60) NOT NULL,
+  	birthdate VARCHAR(100)NOT NULL,
+  	sex VARCHAR(1) NOT NULL,
+	user VARCHAR(100) NOT NULL,
+	password VARCHAR(200) NOT NULL
+);
+
+INSERT INTO employee (name, birthdate, sex, user, password) VALUES('Caio Rocha','15/05/2001','M', 'Crocha','$2a$12$oMVEbJaxKM6kKWM3oWn4u.9RzCc/HtPpnPbtETbdyFHBmaC6uBgjm');
+INSERT INTO employee (name, birthdate, sex, user, password) VALUES('Lucas Gouget','14/07/2002','M','Lgouget','$2a$12$0.M/cdydmg4PQlvGlyCU7uSKr0A9Us07ybUpPaTpz2aaOr8oRTH8a');
+INSERT INTO employee (name, birthdate, sex, user, password) VALUES('Matheus Eduardo','11/06/1999','M','Meduardo','$2a$12$4ST29rJqH1HMs3kJxCBOCOWrt322OuLdu/5jrofUh3uKirAAP6QJK');
+
+
+
 
 CREATE TABLE role(
-		id INT PRIMARY KEY auto_increment,
+	id INT PRIMARY KEY auto_increment,
   	name VARCHAR(60) NOT NULL,
   	description VARCHAR(200) NOT NULL
 
 );
 
-INSERT INTO role (name, description) VALUES('Medico Cardiologista','Funcionário tem permissão de visualizar gráficos de pacientes');
+INSERT INTO role (name, description) VALUES('ROLE_ADMIN','Funcionário tem permissão de ADMINISTRADOR'),
+('ROLE_DOCTOR','Funcionário tem permissões de MÉDICO'),
+('ROLE_NURSE','Funcionário tem permissões de ENFERMEIRO');
+
+
+CREATE TABLE employee_roles(
+	employee_id INT,
+	roles_id INT
+);
+
+INSERT INTO employee_roles VALUES(1,1), (2  ,2),(3 , 3);
+
 
 
 CREATE TABLE permission(
@@ -30,23 +56,6 @@ INSERT INTO permission (name, description, isActive) VALUES('MASTER','PERMISSÃO
 INSERT INTO permission (name, description, isActive) VALUES('ADMIN','PERMISSÃO DE GERENCIAMENTO', TRUE);
 INSERT INTO permission (name, description, isActive) VALUES('MEDICO','PERMISSÃO PADRÃO PARA MEDICOS', TRUE);
 INSERT INTO permission (name, description, isActive) VALUES('ENFERMEIRO','PERMISSÃO PADRÃO PARA ENFERMARIA', TRUE);
-
-
-CREATE TABLE employee(
-	id INT PRIMARY KEY auto_increment,
-  	name VARCHAR(60) NOT NULL,
-  	birthdate VARCHAR(100)NOT NULL,
-  	sex VARCHAR(1) NOT NULL,
-	user VARCHAR(100) NOT NULL,
-	password VARCHAR(60) NOT NULL,
-	permission_id INT
-
-);
-
-INSERT INTO employee (name, birthdate, sex, user, password, permission_id)VALUES('Caio Rocha','15/05/2001','M', 'Crocha','$2a$12$oMVEbJaxKM6kKWM3oWn4u.9RzCc/HtPpnPbtETbdyFHBmaC6uBgjm', 1);
-INSERT INTO employee (name, birthdate, sex, user, password, permission_id)VALUES('Lucas Gouget','14/07/2002','M','Lgouget','$2a$12$0.M/cdydmg4PQlvGlyCU7uSKr0A9Us07ybUpPaTpz2aaOr8oRTH8a',null);
-INSERT INTO employee (name, birthdate, sex, user, password, permission_id)VALUES('Matheus Eduardo','11/06/1999','M','Meduardo','$2a$12$4ST29rJqH1HMs3kJxCBOCOWrt322OuLdu/5jrofUh3uKirAAP6QJK', null);
-
 
 
 CREATE TABLE patient(
