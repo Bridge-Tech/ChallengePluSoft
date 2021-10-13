@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.fiap.challengePluSoft.exception.NotAllowedException;
+import br.com.fiap.challengePluSoft.exception.PatientNotFoundException;
+import br.com.fiap.challengePluSoft.model.Employee;
 import br.com.fiap.challengePluSoft.model.Patient;
 import br.com.fiap.challengePluSoft.repository.PatientRepository;
 
@@ -77,4 +81,45 @@ public class PatientController {
 		
 		return "patients";
 	}
+	
+	@GetMapping("/patient/startTreatment/{id}")
+	public String start(@PathVariable Long id, Authentication auth) {
+		Optional<Patient> optional = repository.findById(id);
+		if (optional.isEmpty()) {
+			throw new PatientNotFoundException("Paciente não encontrado!");
+		}
+		
+		Patient patient = optional.get();
+		
+		if (patient.getEmployee() != null) {
+			throw new NotAllowedException("Paciente ja iniciou o tratamento!");
+		}
+		Employee employee = (Employee) auth.getPrincipal();
+		patient.setEmployee(employee);
+		repository.save(patient);
+		return "redirect:/patients";
+	}
+	
+	@GetMapping("/patient/stopTreatment/{id}")
+	public String stop(@PathVariable Long id, Authentication auth) {
+		Optional<Patient> optional = repository.findById(id);
+		
+		if (optional.isEmpty()) {
+			throw new PatientNotFoundException("Paciente não encontrado!");
+		}
+		
+		Patient patient = optional.get();
+		Employee employee = (Employee) auth.getPrincipal();
+		
+		if (!patient.getEmployee().equals(employee) ) {
+			throw new NotAllowedException("Esse Paciente não esta atribuido a você!");
+		}
+		
+		
+		patient.setEmployee(null);
+		repository.save(patient);
+		return "redirect:/patients";
+	}
+	
+	
 }

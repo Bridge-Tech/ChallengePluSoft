@@ -57,10 +57,10 @@ CREATE TABLE patient(
   	employee_id int
 );
 
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Gilberto','12/09/2001','M',1);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Gilberto','12/09/2001','M',null);
 INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Allan','17/02/1967','M',null);
 INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('João','11/06/1900','M' ,null);
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Sahra','03/03/1971','F',1);
+INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Sahra','03/03/1971','F',null);
 INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Drica','30/11/2004','F',null);
 INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('João','12/12/2012','F',null);
 
