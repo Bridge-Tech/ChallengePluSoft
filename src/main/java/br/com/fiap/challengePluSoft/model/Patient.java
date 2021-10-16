@@ -1,5 +1,7 @@
 package br.com.fiap.challengePluSoft.model;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,4 +24,6 @@ public class Patient {
 	private String sex;
 	@ManyToOne
 	private Employee employee;
+	@ManyToOne
+	private Note note;
 }

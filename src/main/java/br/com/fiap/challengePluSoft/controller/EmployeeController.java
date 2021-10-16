@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.challengePluSoft.model.Employee;
 import br.com.fiap.challengePluSoft.repository.EmployeeRepository;
@@ -46,7 +47,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/employee")
-	public String save (@Valid Employee employee, BindingResult result) {
+	public String save (@Valid Employee employee, BindingResult result,  RedirectAttributes redirect) {
 		
 		if(result.hasErrors()) {
 			System.out.println("Não salvando Funcionário...");
@@ -55,7 +56,7 @@ public class EmployeeController {
 		employee.setPassword(AuthenticationService.getPasswordEncoder().encode(employee.getPassword()));
 		System.out.println("Salvando Fucionário...");
 		repository.save(employee);
-		return "login";
+		return "redirect:login";
 	}
 	
 	

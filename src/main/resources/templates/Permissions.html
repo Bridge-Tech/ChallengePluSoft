@@ -15,7 +15,7 @@
 </div>
 
 <div class="align-justify-center p-5 m-5" >
-	<table class="table table-hover">
+	<table class="table table-bordered shadow p-3 mb-5 bg-body rounded rounded-3">
 	  <thead>
 	    <tr>
 	      <th scope="col">#</th>
@@ -30,7 +30,7 @@
 	      <th th:text="${permission.id}"></th>
 	      <td th:text="${permission.name}"></td>
 	      <td th:text="${permission.description}"></td>
-	      <td th:text="${permission.isActive} ? 'N' : 'S'"></td> 
+	      <td th:text="${permission.is_active} ? 'N' : 'S'"></td> 
 	      <td><a class=" btn btn-secondary p-1 m-1" th:href="${'/permission/edit/'+permission.id}"  type="button">Editar</a><a class="disable btn btn-danger p-1 m-1 disabled" th:href="${'/permission/delete/'+permission.id}"  type="button">Excluir</a></td>
 	    </tr>
 	  </tbody>

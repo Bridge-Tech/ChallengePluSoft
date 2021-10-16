@@ -36,7 +36,7 @@ public class Employee implements UserDetails{
 	private String sex;
 	@NotBlank @Size(max=100, message="User não pode ter mais de 100 caracteres")
 	private String user;
-	@NotBlank @Size(max=60, min = 1,message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
+	@NotBlank @Size(max=60, min = 1, message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
 	private String password;
 	@ManyToMany(fetch= FetchType.EAGER)
 	private Collection<Role> roles;
@@ -81,5 +81,29 @@ public class Employee implements UserDetails{
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return this.password;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 }

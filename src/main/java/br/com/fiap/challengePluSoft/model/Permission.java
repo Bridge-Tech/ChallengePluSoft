@@ -22,5 +22,5 @@ public class Permission {
     @NotBlank @Size(max= 300, message="A descrição não pode conter mais de 300 caracteres")
     private String description;
     @NotNull
-    private Boolean isActive;
+    private Boolean is_active;
 }

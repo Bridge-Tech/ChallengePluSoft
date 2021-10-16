@@ -1,5 +1,6 @@
 package br.com.fiap.challengePluSoft.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,10 @@ import br.com.fiap.challengePluSoft.exception.PatientNotFoundException;
 import br.com.fiap.challengePluSoft.model.Employee;
 import br.com.fiap.challengePluSoft.model.Patient;
 import br.com.fiap.challengePluSoft.repository.PatientRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class PatientController {
 	@Autowired
 	private PatientRepository repository;
@@ -56,10 +59,18 @@ public class PatientController {
 	}
 	
 	@GetMapping("/patient/analyzer/{id}")
-	public ModelAndView analyzer(@PathVariable Long id) {
+	public ModelAndView analyzer(@PathVariable Long id, RedirectAttributes redirect) {
 		ModelAndView modelAndView = new ModelAndView("patientAnalyzer");
-		Optional<Patient> patient =  repository.findById(id);
-		modelAndView.addObject("patientAnalyzer",patient.get());
+		Optional<Patient> optional =  repository.findById(id);
+		
+		if(optional.isEmpty()) {
+			modelAndView.addObject("redirect:patients");
+			return modelAndView;
+		}
+		
+		Patient patient = optional.get();
+		log.info(patient.toString());
+		modelAndView.addObject("patientAnalyzer",patient);
 		return modelAndView;
 	}
 	
@@ -94,9 +105,12 @@ public class PatientController {
 		if (patient.getEmployee() != null) {
 			throw new NotAllowedException("Paciente ja iniciou o tratamento!");
 		}
+		
 		Employee employee = (Employee) auth.getPrincipal();
 		patient.setEmployee(employee);
 		repository.save(patient);
+		System.out.println("UPDATE PASSIENTE");
+		log.info(patient.toString());
 		return "redirect:/patients";
 	}
 	
@@ -111,9 +125,9 @@ public class PatientController {
 		Patient patient = optional.get();
 		Employee employee = (Employee) auth.getPrincipal();
 		
-		if (!patient.getEmployee().equals(employee) ) {
+		if (!patient.getEmployee().equals(employee)) {
 			throw new NotAllowedException("Esse Paciente não esta atribuido a você!");
-		}
+		} 
 		
 		
 		patient.setEmployee(null);

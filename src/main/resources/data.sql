@@ -49,13 +49,13 @@ CREATE TABLE permission(
 	id INT PRIMARY KEY auto_increment,
   	name VARCHAR(60) NOT NULL,
   	description VARCHAR(200) NOT NULL,
-  	isActive BOOLEAN NOT NULL
+	is_active BOOLEAN NOT NULL DEFAULT TRUE
 
 );
-INSERT INTO permission (name, description, isActive) VALUES('MASTER','PERMISSÃO MAXIMA DO SISTEMA', TRUE);
-INSERT INTO permission (name, description, isActive) VALUES('ADMIN','PERMISSÃO DE GERENCIAMENTO', TRUE);
-INSERT INTO permission (name, description, isActive) VALUES('MEDICO','PERMISSÃO PADRÃO PARA MEDICOS', TRUE);
-INSERT INTO permission (name, description, isActive) VALUES('ENFERMEIRO','PERMISSÃO PADRÃO PARA ENFERMARIA', TRUE);
+INSERT INTO permission (name, description, is_active) VALUES('MASTER','PERMISSÃO MAXIMA DO SISTEMA', TRUE);
+INSERT INTO permission (name, description, is_active) VALUES('VER_GRAFICOS','PERMISSÃO PARA CONSEGUIR VER GRAFICOS', TRUE);
+INSERT INTO permission (name, description, is_active) VALUES('OPERAR_MAQUINA','PERMISSÃO PARA OPERAR MAQUINAS', TRUE);
+INSERT INTO permission (name, description, is_active) VALUES('MEDCAR','PERMISSÃO PARA PODER ALTERAR MEDICAMENTOS', TRUE);
 
 
 CREATE TABLE patient(
@@ -63,15 +63,16 @@ CREATE TABLE patient(
   	name VARCHAR(64) NOT NULL,
   	birthdate VARCHAR(100)NOT NULL,
   	sex VARCHAR(1) NOT NULL,
-  	employee_id int
+  	employee_id int,
+  	note_id int
 );
 
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Gilberto','12/09/2001','M',null);
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Allan','17/02/1967','M',null);
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('João','11/06/1900','M' ,null);
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Sahra','03/03/1971','F',null);
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('Drica','30/11/2004','F',null);
-INSERT INTO patient (name, birthdate, sex, employee_id)VALUES('João','12/12/2012','F',null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Gilberto','12/09/2001','M',null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Allan','17/02/1967','M',null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('João','11/06/1900','M' ,null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Sahra','03/03/1971','F',null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Drica','30/11/2004','F',null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('João','12/12/2012','F',null, null);
 
 
 CREATE TABLE STATES
