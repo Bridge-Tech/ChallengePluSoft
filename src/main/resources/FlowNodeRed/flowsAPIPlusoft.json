@@ -1,0 +1,169 @@
+[
+    {
+        "id": "1c80ede089b4e96b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "be26071ce6dc8d6b",
+        "type": "serial in",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "serial": "723ad9d7b5b0b0cd",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "c0521a0be64792cf"
+            ]
+        ]
+    },
+    {
+        "id": "c0521a0be64792cf",
+        "type": "debug",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "eedea248b63fb860",
+        "type": "serial out",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "serial": "723ad9d7b5b0b0cd",
+        "x": 550,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "0fb3e7cf3d3af08f",
+        "type": "inject",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "3",
+        "payloadType": "str",
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "eedea248b63fb860"
+            ]
+        ]
+    },
+    {
+        "id": "7e7253bb8b6dba35",
+        "type": "inject",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "str",
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "eedea248b63fb860"
+            ]
+        ]
+    },
+    {
+        "id": "ce68186995c9eccc",
+        "type": "inject",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "eedea248b63fb860"
+            ]
+        ]
+    },
+    {
+        "id": "eacb71759b0ef4b7",
+        "type": "inject",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "x": 250,
+        "y": 600,
+        "wires": [
+            [
+                "eedea248b63fb860"
+            ]
+        ]
+    },
+    {
+        "id": "723ad9d7b5b0b0cd",
+        "type": "serial-port",
+        "serialport": "COM4",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    }
+]
