@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.fiap.challengePluSoft.model.Employee;
 import br.com.fiap.challengePluSoft.repository.EmployeeRepository;
 import br.com.fiap.challengePluSoft.service.AuthenticationService;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class EmployeeController {
 	
 	@Autowired
@@ -59,16 +60,33 @@ public class EmployeeController {
 		return "redirect:login";
 	}
 	
-	
 	@GetMapping("/employee/delete/{id}")
-	public String destroy(@PathVariable Long id) {
-		Optional<Employee> employee = repository.findById(id);
-		if (employee.isEmpty()) {
-			return "employees";
-		}
-		repository.deleteById(id);
+	public ModelAndView confirmDestruction(@PathVariable Long id, RedirectAttributes redirect) {
 		
-		return "employees";
+		ModelAndView modelAndView = new ModelAndView("employeeDestroy");
+		Optional<Employee> optional = repository.findById(id);
+		
+		if(optional.isEmpty()) {
+		}
+		Employee employee = optional.get();
+			
+		modelAndView.addObject("employeeDel", employee);
+		return modelAndView;
+	}
+	
+	@GetMapping("/employee/destroy/{id}")
+	public String destroy(@PathVariable Long id, RedirectAttributes redirect) {
+		Optional<Employee> optional = repository.findById(id);
+		if (optional.isEmpty()) {
+			redirect.addFlashAttribute("message","Funcionario deletado com Sucesso");
+			return "redirect:employeeDel";
+		}
+		Employee employee = optional.get();
+		log.info(employee.toString());
+		employee.setIs_active(false);
+		repository.save(employee); 
+		redirect.addFlashAttribute("message","Funcionario deletado com Sucesso");
+		return "redirect:/employees";
 	}
 	
 	

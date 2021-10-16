@@ -10,7 +10,7 @@
 	</div>
 	<div class="row">
 		<h3 style="color: #5e00a6; font-family: fantasy; padding-left: 23em; margin-top: 1em;">Lista de Departamentos</h3>
-		<a style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button"  href="/office/new">Novo Departamento</a>
+		<a sec:authorize="hasRole('ROLE_ADMIN')" style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button"  href="/office/new">Novo Departamento</a>
 	</div>
 	
 	<span th:text="${message}"></span>

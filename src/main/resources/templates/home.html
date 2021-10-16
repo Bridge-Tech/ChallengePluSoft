@@ -14,8 +14,6 @@
 	<div class="p-2 m-2">
 
 		<ul class="nav align-middle" style="justify-content: center;">
-			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="#">Home</a></li>
 			<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a
 				class="nav-link" href="/employees">Funcionários</a></li>
 			<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a

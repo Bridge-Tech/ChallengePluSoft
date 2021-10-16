@@ -14,12 +14,13 @@ CREATE TABLE employee(
   	birthdate VARCHAR(100)NOT NULL,
   	sex VARCHAR(1) NOT NULL,
 	user VARCHAR(100) NOT NULL,
-	password VARCHAR(200) NOT NULL
+	password VARCHAR(200) NOT NULL,
+	is_active BOOLEAN
 );
 
-INSERT INTO employee (name, birthdate, sex, user, password) VALUES('Caio Rocha','15/05/2001','M', 'Crocha','$2a$12$oMVEbJaxKM6kKWM3oWn4u.9RzCc/HtPpnPbtETbdyFHBmaC6uBgjm');
-INSERT INTO employee (name, birthdate, sex, user, password) VALUES('Lucas Gouget','14/07/2002','M','Lgouget','$2a$12$0.M/cdydmg4PQlvGlyCU7uSKr0A9Us07ybUpPaTpz2aaOr8oRTH8a');
-INSERT INTO employee (name, birthdate, sex, user, password) VALUES('Matheus Eduardo','11/06/1999','M','Meduardo','$2a$12$4ST29rJqH1HMs3kJxCBOCOWrt322OuLdu/5jrofUh3uKirAAP6QJK');
+INSERT INTO employee (name, birthdate, sex, user, password, is_active) VALUES('Caio Rocha','15/05/2001','M', 'Crocha','$2a$12$oMVEbJaxKM6kKWM3oWn4u.9RzCc/HtPpnPbtETbdyFHBmaC6uBgjm', TRUE);
+INSERT INTO employee (name, birthdate, sex, user, password, is_active) VALUES('Lucas Gouget','14/07/2002','M','Lgouget','$2a$12$0.M/cdydmg4PQlvGlyCU7uSKr0A9Us07ybUpPaTpz2aaOr8oRTH8a', TRUE);
+INSERT INTO employee (name, birthdate, sex, user, password, is_active) VALUES('Matheus Eduardo','11/06/1999','M','Meduardo','$2a$12$4ST29rJqH1HMs3kJxCBOCOWrt322OuLdu/5jrofUh3uKirAAP6QJK',TRUE);
 
 
 
@@ -67,13 +68,22 @@ CREATE TABLE patient(
   	note_id int
 );
 
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Gilberto','12/09/2001','M',null, null);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Allan','17/02/1967','M',null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Gilberto','12/09/2001','M',null, 2);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Allan','17/02/1967','M',null, 1);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('João','11/06/1900','M' ,null, null);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Sahra','03/03/1971','F',null, null);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Drica','30/11/2004','F',null, null);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('João','12/12/2012','F',null, null);
 
+
+CREATE TABLE note(
+	id INT PRIMARY KEY auto_increment,
+	description VARCHAR(1000),
+	employee_id int,
+	date VARCHAR(50)
+);
+INSERT INTO note (description, employee_id, date) VALUES ('Aplicada medicação para tratamento da irritações na pele ou descoloração dos dedos dos pés', 3 ,'29/09/2021');
+INSERT INTO note (description, employee_id, date) VALUES ('Aplicada medicação para tratamento do desarranjo do intestino', 3 ,'06/10/2021');
 
 CREATE TABLE STATES
 (

@@ -18,6 +18,7 @@ import br.com.fiap.challengePluSoft.repository.NoteRepository;
 
 @Controller
 public class NoteController {
+	
 	@Autowired
 	private NoteRepository repository;
 	
@@ -26,7 +27,7 @@ public class NoteController {
 		return "noteNew";
 	}
 	
-	@PostMapping("/note")
+	@PostMapping("/notes")
 	public String save (@Valid Note note, BindingResult result, Authentication auth ,RedirectAttributes redirect) {
 		
 		if(result.hasErrors()) {

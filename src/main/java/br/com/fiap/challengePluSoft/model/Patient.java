@@ -2,6 +2,9 @@ package br.com.fiap.challengePluSoft.model;
 
 
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

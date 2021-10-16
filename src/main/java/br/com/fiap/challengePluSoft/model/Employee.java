@@ -40,13 +40,11 @@ public class Employee implements UserDetails{
 	private String password;
 	@ManyToMany(fetch= FetchType.EAGER)
 	private Collection<Role> roles;
+	private Boolean is_active;
 	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		/*
-		 * Conseguir Pegar da tabela Permission e
-		 *  colocar as permissoes nas pessoas por aqui! */
 		return this.roles;
 	}
 	@Override
@@ -71,10 +69,6 @@ public class Employee implements UserDetails{
 	}
 	@Override
 	public boolean isEnabled() {
-		
-		/*
-		 * Conseguir Pegar da tabela Person e
-		 *  desabilitar as pessoas por aqui! */
 		return true;
 	}
 	@Override

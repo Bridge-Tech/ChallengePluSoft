@@ -23,12 +23,12 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr th:each="employee : ${employees}">
+		    <tr th:if="${employee.is_active == true}" th:each="employee : ${employees}">
 		      <th th:text="${employee.id}"></th>
 		      <td th:text="${employee.name}"></td>
 		      <td th:text="${employee.birthdate}"></td>
 		      <td th:text="${employee.sex}"></td>
-		      <td><a class="btn btn-secondary p-1 m-1" type="button">Editar</a><a class="btn btn-danger p-1 m-1" th:href="${'/employee/delete/'+employee.id}" type="button">Excluir</a></td>
+		      <td><!--<a class="btn btn-secondary p-1 m-1" type="button">Editar</a>--><a class="btn btn-danger p-1 m-1" th:href="${'/employee/delete/'+employee.id}" type="button">Desabilitar</a></td>
 		    </tr>
 		  </tbody>
 		</table>

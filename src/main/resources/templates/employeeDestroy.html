@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:include="_template :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="card">
+		<div class="card-header">Desabilitar Funcionario</div>
+		<div class="card-body">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						Nome:
+						<p th:text="${employeeDel.name}"></p>
+					</div>
+					<div class="col">
+						Data de Nascimento:
+						<p th:text="${employeeDel.birthdate}"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						Sexo:
+						<p th:text="${employeeDel.sex}"></p>
+					</div>
+					<div class="col">
+						Nome de Usuario:
+						<p th:text="${employeeDel.user}"></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<a type="button" href="/employees" class="btn btn-info">Voltar</a> 
+				<a th:href="${'/employee/destroy/'+employeeDel.id}"	class="btn btn-danger" type="button">Desabilitar</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

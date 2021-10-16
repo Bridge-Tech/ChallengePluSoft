@@ -10,15 +10,15 @@
 	</div>
 	<div class="row">
 		<h3 style="color: #5e00a6; font-family: fantasy; padding-left: 23em; margin-top: 1em;">Lista de Pacientes</h3>
-		<a style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button" href="/patient/new">Novo Paciente</a>
+		<a sec:authorize="hasRole('ROLE_ADMIN')" style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button" href="/patient/new">Novo Paciente</a>
 	</div>
 	<div class="align-justify-center p-5 m-5" >
-		<table class="table table-bordered shadow p-3 mb-5 bg-body rounded rounded-3">
+		<table class="table table-bordered shadow p-3 mb-5 bg-body rounded rounded-3 	">
 		  <thead>
 		    <tr>
 		      <th scope="col">#</th>
 		      <th scope="col">Nome</th>
-		      <th scope="col">Data de Aniversário</th>
+		      <th scope="col">Data de Nascimento</th>
 		      <th scope="col">Genero</th>
 		      <th scope="col">Opções</th>
 		    </tr>
@@ -29,8 +29,8 @@
 		      <td th:text="${patient.name}"></td>
 		      <td th:text="${patient.birthdate}"></td>
 		      <td th:text="${patient.sex}"></td>
-		      <td><a class="btn btn-secondary p-1 m-1" type="button">Editar</a><a class="btn btn-info p-1 m-1"  th:href="${'/patient/analyzer/'+patient.id}" type="button">Ver mais</a><a th:if="${patient.employee == null}" class="btn btn-success p-1 m-1" th:href="${'/patient/startTreatment/'+patient.id}" type="button">Iniciar Tratamento</a> 
-		     <a th:if="${patient.employee == #authentication.getPrincipal()}" class="btn btn-warning p-1 m-1" th:href="${'/patient/stopTreatment/'+patient.id}" type="button">Largar Tratamento</a><a class="btn btn-danger p-1 m-1" th:href="${'/patient/delete/'+patient.id}" type="button">Excluir</a></td>
+		      <td><a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-secondary p-1 m-1" type="button">Editar</a><a class="btn btn-info p-1 m-1"  th:href="${'/patient/analyzer/'+patient.id}" type="button">Ver mais</a><a sec:authorize="hasRole('ROLE_DOCTOR')" th:if="${patient.employee == null}" class="btn btn-success p-1 m-1" th:href="${'/patient/startTreatment/'+patient.id}" type="button">Iniciar Tratamento</a> 
+		     <a th:if="${patient.employee == #authentication.getPrincipal()}" class="btn btn-warning p-1 m-1" th:href="${'/patient/stopTreatment/'+patient.id}" type="button">Largar Tratamento</a><a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger p-1 m-1" th:href="${'/patient/delete/'+patient.id}" type="button">Desabilitar</a></td>
 		    </tr>
 		  </tbody>
 		</table>
