@@ -1,10 +1,5 @@
 package br.com.fiap.challengePluSoft.model;
 
-
-
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,4 +24,5 @@ public class Patient {
 	private Employee employee;
 	@ManyToOne
 	private Note note;
+	private Boolean is_active;
 }

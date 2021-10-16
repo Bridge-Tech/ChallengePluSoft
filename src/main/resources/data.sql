@@ -65,15 +65,16 @@ CREATE TABLE patient(
   	birthdate VARCHAR(100)NOT NULL,
   	sex VARCHAR(1) NOT NULL,
   	employee_id int,
-  	note_id int
+  	note_id int,
+  	is_active BOOLEAN
 );
 
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Gilberto','12/09/2001','M',null, 2);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Allan','17/02/1967','M',null, 1);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('João','11/06/1900','M' ,null, null);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Sahra','03/03/1971','F',null, null);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('Drica','30/11/2004','F',null, null);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id)VALUES('João','12/12/2012','F',null, null);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Gilberto','12/09/2001','M',null, 2, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Allan','17/02/1967','M',null, 2, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('João','11/06/1900','M' ,null, null, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Sahra','03/03/1971','F',null, null, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Drica','30/11/2004','F',null, null, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('João','12/12/2012','F',null, null, TRUE);
 
 
 CREATE TABLE note(

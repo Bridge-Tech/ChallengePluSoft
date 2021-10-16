@@ -79,7 +79,7 @@ public class EmployeeController {
 		Optional<Employee> optional = repository.findById(id);
 		if (optional.isEmpty()) {
 			redirect.addFlashAttribute("message","Funcionario deletado com Sucesso");
-			return "redirect:employeeDel";
+			return "redirect:employeeDestroy";
 		}
 		Employee employee = optional.get();
 		log.info(employee.toString());

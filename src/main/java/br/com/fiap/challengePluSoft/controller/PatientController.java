@@ -77,21 +77,47 @@ public class PatientController {
 	@GetMapping("/patient/edit/{id}")
 	public ModelAndView edit(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("patientEdit");
-		Optional<Patient> patient =  repository.findById(id);
-		modelAndView.addObject("patientAnalyzer",patient.get());
+		Optional<Patient> optional =  repository.findById(id);
+		if(optional.isEmpty()) {	
+		}
+		
+		Patient patient = optional.get();
+		modelAndView.addObject("patientEdit",patient);
 		return modelAndView;
 	}
 	
 	@GetMapping("/patient/delete/{id}")
-	public String destroy(@PathVariable Long id) {
-		Optional<Patient> patient = repository.findById(id);
-		if (patient.isEmpty()) {
-			return "patients";
-		}
-		repository.deleteById(id);
+	public ModelAndView confirmDestruction(@PathVariable Long id, RedirectAttributes redirect) {
 		
-		return "patients";
+		ModelAndView modelAndView = new ModelAndView("patientDestroy");
+		Optional<Patient> optional = repository.findById(id);
+		
+		if(optional.isEmpty()) {
+		}
+		Patient patient = optional.get();
+			
+		modelAndView.addObject("patientDel", patient);
+		return modelAndView;
+	} 
+	
+	@GetMapping("/patient/destroy/{id}")
+	public String destroy(@PathVariable Long id, RedirectAttributes redirect) {
+		Optional<Patient> optional = repository.findById(id);
+		if (optional.isEmpty()) {
+			redirect.addFlashAttribute("message","Não foi possivel desabilitar o Paciente");
+			return "redirect:patientDestroy";
+		}
+		Patient patient = optional.get();
+		log.info(patient.toString());
+		patient.setIs_active(false);
+		repository.save(patient); 
+		redirect.addFlashAttribute("message","Paciente desabilitado com Sucesso");
+		return "redirect:/patients";
 	}
+	
+	
+	
+	
 	
 	@GetMapping("/patient/startTreatment/{id}")
 	public String start(@PathVariable Long id, Authentication auth) {

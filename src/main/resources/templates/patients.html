@@ -24,7 +24,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr th:each="patient : ${patients}">
+		    <tr th:if="${patient.is_active == true}" th:each="patient : ${patients}">
 		      <th th:text="${patient.id}"></th>
 		      <td th:text="${patient.name}"></td>
 		      <td th:text="${patient.birthdate}"></td>

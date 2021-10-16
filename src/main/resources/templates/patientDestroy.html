@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:include="_template :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="card">
+		<div class="card-header">Desabilitar Paciente</div>
+		<div class="card-body">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						Nome:
+						<p th:text="${patientDel.name}"></p>
+					</div>
+					<div class="col">
+						Data de Nascimento:
+						<p th:text="${patientDel.birthdate}"></p>
+					</div>
+					<div class="col">
+						Sexo:
+						<p th:text="${patientDel.sex}"></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" style="margin-top:1em; margin-left:1em;">
+				<a type="button" href="/patients" class="btn btn-info">Voltar</a> 
+				<a th:href="${'/patient/destroy/'+patientDel.id}"	class="btn btn-danger" type="button">Desabilitar</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
