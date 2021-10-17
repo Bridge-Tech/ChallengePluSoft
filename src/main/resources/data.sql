@@ -2,10 +2,12 @@
 CREATE TABLE office(
 	id INT PRIMARY KEY auto_increment,
   	name VARCHAR(60) NOT NULL,
-  	description VARCHAR(200) NOT NULL
+  	description VARCHAR(200) NOT NULL,
+  	is_active BOOLEAN DEFAULT TRUE
 );
 
-INSERT INTO office (name, description) VALUES('ENFERMEIRO','DEPARTAMENTO DE ENFERMARIA');
+INSERT INTO office (name, description, is_active) VALUES('ENFERMARIA','DEPARTAMENTO DE ENFERMARIA', TRUE);
+INSERT INTO office (name, description, is_active) VALUES('ANESTESISTAS','DEPARTAMENTO DOS MEDICOS ANESTESISTAS', TRUE);
 
 
 CREATE TABLE employee(
@@ -74,7 +76,7 @@ INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUE
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('João','11/06/1900','M' ,null, null, TRUE);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Sahra','03/03/1971','F',null, null, TRUE);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Drica','30/11/2004','F',null, null, TRUE);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('João','12/12/2012','F',null, null, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Carla','12/12/2012','F',null, null, TRUE);
 
 
 CREATE TABLE note(

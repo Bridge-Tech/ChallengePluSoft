@@ -13,7 +13,7 @@
 	<h3 style="color: #5e00a6; font-family: fantasy; padding-left: 23em; margin-top: 1em;">Lista de Permissões</h3>
 	<a style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button" href="/permission/new">Nova Permissão</a>
 </div>
-
+<span th:text="${message}"></span>
 <div class="align-justify-center p-5 m-5" >
 	<table class="table table-bordered shadow p-3 mb-5 bg-body rounded rounded-3">
 	  <thead>
@@ -22,7 +22,7 @@
 	      <th scope="col">Nome</th>
 	      <th scope="col">Descrição</th>
 	      <th scope="col">Está Ativa</th>
-	      <th scope="col">Opções</th>
+	     <!-- <th scope="col">Opções</th> --> 
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -31,7 +31,7 @@
 	      <td th:text="${permission.name}"></td>
 	      <td th:text="${permission.description}"></td>
 	      <td th:text="${permission.is_active} ? 'N' : 'S'"></td> 
-	      <td><a class=" btn btn-secondary p-1 m-1" th:href="${'/permission/edit/'+permission.id}"  type="button">Editar</a><a class="disable btn btn-danger p-1 m-1 disabled" th:href="${'/permission/delete/'+permission.id}"  type="button">Excluir</a></td>
+	      <!-- <td><a class=" btn btn-secondary p-1 m-1" th:href="${'/permission/edit/'+permission.id}"  type="button">Editar</a><a class="disable btn btn-danger p-1 m-1 disabled" th:href="${'/permission/delete/'+permission.id}"  type="button">Excluir</a></td> -->
 	    </tr>
 	  </tbody>
 	</table>

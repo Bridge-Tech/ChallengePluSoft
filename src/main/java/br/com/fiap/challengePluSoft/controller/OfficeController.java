@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.challengePluSoft.model.Office;
+import br.com.fiap.challengePluSoft.model.Patient;
 import br.com.fiap.challengePluSoft.repository.OfficeRepository;
 
 @Controller
@@ -41,6 +42,7 @@ public class OfficeController {
 		if (result.hasErrors()) {
 			return "officeNew";
 		}
+		office.setIs_active(true);
 		repository.save(office);
 		redirect.addFlashAttribute("message","Departamento cadastrado com sucesso");
 		return "redirect:offices";
@@ -74,6 +76,37 @@ public class OfficeController {
 		return "redirect:offices";
 	}
 	
+	
+	
+	
+	@GetMapping("/office/delete/{id}")
+	public ModelAndView confirmDestruction(@PathVariable Long id, RedirectAttributes redirect) {
+		
+		ModelAndView modelAndView = new ModelAndView("officeDestroy");
+		Optional<Office> optional = repository.findById(id);
+		
+		if(optional.isEmpty()) {
+		}
+		Office office = optional.get();
+			
+		modelAndView.addObject("officeDel", office);
+		return modelAndView;
+	} 
+	
+	@GetMapping("/office/destroy/{id}")
+	public String destroy(@PathVariable Long id, RedirectAttributes redirect) {
+		Optional<Office> optional = repository.findById(id);
+		if (optional.isEmpty()) {
+			redirect.addFlashAttribute("message","Não foi possivel desabilitar o Departamento");
+			return "redirect:officeDestroy";
+		}
+		Office office = optional.get();
+		//log.info(office.toString());
+		office.setIs_active(false);
+		repository.save(office); 
+		redirect.addFlashAttribute("message","Departamento desabilitado com Sucesso");
+		return "redirect:/offices";
+	}
 	
 	
 }

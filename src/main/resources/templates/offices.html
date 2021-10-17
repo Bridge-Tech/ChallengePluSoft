@@ -21,17 +21,15 @@
 		      <th scope="col">#</th>
 		      <th scope="col">Nome</th>
 		      <th scope="col">Descrição</th>
-		      <th scope="col">###</th>
 		      <th scope="col">Opções</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr th:each="office : ${offices}">
+		    <tr th:if="${office.is_active == true}" th:each="office : ${offices}">
 		      <th th:text="${office.id}"></th>
 		      <td th:text="${office.name}"></td>
 		      <td th:text="${office.description}"></td>
-		      <td></td>
-		      <td><a class="btn btn-secondary p-1 m-1" th:href="${'/office/edit/'+office.id}" type="button">Editar</a><a class="btn btn-danger p-1 m-1" th:href="${'/office/delete/'+office.id}" type="button">Excluir</a></td>
+		      <td><!-- <a class="btn btn-secondary p-1 m-1" th:href="${'/office/edit/'+office.id}" type="button">Editar</a> --><a class="btn btn-danger p-1 m-1" th:href="${'/office/delete/'+office.id}" type="button">Desativar</a></td>
 		    </tr>
 		  </tbody>
 		</table>

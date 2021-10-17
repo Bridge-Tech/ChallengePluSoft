@@ -18,7 +18,8 @@ public class Office {
 	@NotBlank @Size(max=60)
 	private String name;
 	@NotBlank @Size(max=200)
-	private String description;
+	private String description; 
+	private Boolean is_active;
 	
 }
 

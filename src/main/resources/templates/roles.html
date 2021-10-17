@@ -10,8 +10,9 @@
 	</div>
 	<div class="row">
 		<h3 style="color: #5e00a6; font-family: fantasy; padding-left: 23em; margin-top: 1em;">Lista de Funções</h3>
-		<a style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button"  href="/role/new">Nova Função</a>
+		<!-- <a style="margin-left: auto; margin-right: 2em;" class="col-2 btn btn-primary" type="button"  href="/role/new">Nova Função</a> -->
 	</div>
+	<span th:text="${message}"></span>
 	<div class="align-justify-center p-5 m-5" >
 		<table class="table table-bordered shadow p-3 mb-5 bg-body rounded rounded-3">
 		  <thead>
@@ -19,8 +20,7 @@
 		      <th scope="col">#</th>
 		      <th scope="col">Nome</th>
 		      <th scope="col">Descrição</th>
-		      <th scope="col">###</th>
-		      <th scope="col">Opções</th>
+		      <!-- <th scope="col">Opções</th> -->
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -28,8 +28,7 @@
 		      <th th:text="${role.id}"></th>
 		      <td th:text="${role.name}"></td>
 		      <td th:text="${role.description}"></td>
-		      <td></td>
-		      <td><a class="btn btn-secondary p-1 m-1" th:href="${'/role/edit/'+role.id}" type="button">Editar</a><a class="btn btn-danger p-1 m-1" th:href="${'/role/delete/'+role.id}" type="button">Excluir</a></td>
+		      <!--<td> <a class="btn btn-secondary p-1 m-1" th:href="${'/role/edit/'+role.id}" type="button">Editar</a> <a class="btn btn-danger p-1 m-1" th:href="${'/role/delete/'+role.id}" type="button">Desativar</a></td>-->
 		    </tr>
 		  </tbody>
 		</table>

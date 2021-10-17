@@ -49,11 +49,14 @@ public class PatientController {
 	public String save (@Valid Patient patient, BindingResult result, RedirectAttributes redirect) {
 		
 		if(result.hasErrors()) {
-			System.out.println("Não salvando Funcionário...");
+			System.out.println("Não salvando Paciente...");
+			redirect.addFlashAttribute("message","Não foi possivel adicionar o Paciente!");
 			return "patientNew";
+			
 		}
-		
-		System.out.println("Salvando Fucionário...");
+		patient.setIs_active(true);
+		System.out.println("Salvando Paciente...");
+		redirect.addFlashAttribute("message","Paciente adicionado com Sucesso!");
 		repository.save(patient);
 		return "redirect:patients";
 	}
@@ -75,16 +78,38 @@ public class PatientController {
 	}
 	
 	@GetMapping("/patient/edit/{id}")
-	public ModelAndView edit(@PathVariable Long id) {
+	public ModelAndView confirmEdit(@PathVariable Long id, RedirectAttributes redirect) {
+		
 		ModelAndView modelAndView = new ModelAndView("patientEdit");
 		Optional<Patient> optional =  repository.findById(id);
 		if(optional.isEmpty()) {	
 		}
-		
 		Patient patient = optional.get();
 		modelAndView.addObject("patientEdit",patient);
 		return modelAndView;
 	}
+	
+	@PostMapping("/patient/edit")
+	public String edit(@Valid Patient patientEdit, BindingResult result, RedirectAttributes redirect) {
+		if(result.hasErrors()) {
+			System.out.println("Não salvando Paciente...");
+			return "patientEdit";
+		}
+		log.info(patientEdit.toString());
+		Optional<Patient> optional = repository.findById(patientEdit.getId());
+		if(optional.isEmpty()) {
+			return "patientEdit";
+		}
+		Patient patient = optional.get();
+		patient.setBirthdate(patient.getBirthdate());
+		patient.setName(patientEdit.getName());
+		System.out.println("Salvando Paciente...");
+		repository.save(patient);
+		return "redirect:patients";
+	}
+	
+	
+	
 	
 	@GetMapping("/patient/delete/{id}")
 	public ModelAndView confirmDestruction(@PathVariable Long id, RedirectAttributes redirect) {
@@ -114,11 +139,7 @@ public class PatientController {
 		redirect.addFlashAttribute("message","Paciente desabilitado com Sucesso");
 		return "redirect:/patients";
 	}
-	
-	
-	
-	
-	
+
 	@GetMapping("/patient/startTreatment/{id}")
 	public String start(@PathVariable Long id, Authentication auth) {
 		Optional<Patient> optional = repository.findById(id);
