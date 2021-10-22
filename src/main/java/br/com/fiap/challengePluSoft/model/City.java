@@ -6,6 +6,8 @@ import lombok.Data;
 
 
 public class City {
+  
+  private Long id;
 
 
 }
