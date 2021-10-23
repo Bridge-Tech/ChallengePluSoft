@@ -2,18 +2,28 @@
 <html xmlns:th="http://thymeleaf.org">
 	<head th:include="_template :: head">
 	<meta charset="UTF-8"></head>
-	<body>
-		<h1>Air-Plus</h1>
-		<div class="card">
-			<section style="margin: 2rem">
-				<p>Sistema para monitoramento de pacientes e controle de componentes Hospitalares</p>
-			</section>
-			<div class="row">
-				<a class="col-2 btn btn-info"href="/login">Entre no sistema</a>
-				<a style="margin-left: 1em" class="col-2 btn btn-primary disabled"href="/employee/new">Criar uma Conta</a>
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/index.css}">
+	<body class="body aling-center">
+		<div class="card mb-3 text-center" >
+		    <div>
+		    	<a href="#" class="thumbnail">
+			    	<img th:src="@{/images/ar_puro.jpg}" class="card-img-top"alt="">
+				</a>
 			</div>
+			
+			<div class="card-body">
+				<h5 class="card-title"></h5>
+				<section class="sectionText">
+					<p>Sistema para monitoramento de pacientes e controle de componentes Hospitalares</p>
+				</section>
+		
+				<a class="col-2 btn btn-info"href="/login">Entre no sistema</a>
+				<a style="margin-left: 1em" class="col-2 btn btn-primary"href="/employee/new">Criar uma Conta</a>
 					
+			</div>
+			<p class="card-text"><small class="text-muted">By Bridge Technology</small></p>
 		</div>
 		
 	</body>
+	
 </html>
