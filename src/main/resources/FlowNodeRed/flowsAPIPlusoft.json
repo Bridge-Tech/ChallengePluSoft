@@ -7,47 +7,6 @@
         "info": ""
     },
     {
-        "id": "be26071ce6dc8d6b",
-        "type": "serial in",
-        "z": "1c80ede089b4e96b",
-        "name": "",
-        "serial": "723ad9d7b5b0b0cd",
-        "x": 250,
-        "y": 300,
-        "wires": [
-            [
-                "c0521a0be64792cf"
-            ]
-        ]
-    },
-    {
-        "id": "c0521a0be64792cf",
-        "type": "debug",
-        "z": "1c80ede089b4e96b",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "eedea248b63fb860",
-        "type": "serial out",
-        "z": "1c80ede089b4e96b",
-        "name": "",
-        "serial": "723ad9d7b5b0b0cd",
-        "x": 550,
-        "y": 460,
-        "wires": []
-    },
-    {
         "id": "0fb3e7cf3d3af08f",
         "type": "inject",
         "z": "1c80ede089b4e96b",
@@ -64,11 +23,11 @@
         "topic": "",
         "payload": "3",
         "payloadType": "str",
-        "x": 250,
-        "y": 400,
+        "x": 330,
+        "y": 220,
         "wires": [
             [
-                "eedea248b63fb860"
+                "cb2bbb87801bbc19"
             ]
         ]
     },
@@ -89,11 +48,11 @@
         "topic": "",
         "payload": "2",
         "payloadType": "str",
-        "x": 230,
-        "y": 460,
+        "x": 330,
+        "y": 280,
         "wires": [
             [
-                "eedea248b63fb860"
+                "cb2bbb87801bbc19"
             ]
         ]
     },
@@ -114,11 +73,11 @@
         "topic": "",
         "payload": "1",
         "payloadType": "str",
-        "x": 250,
-        "y": 540,
+        "x": 330,
+        "y": 340,
         "wires": [
             [
-                "eedea248b63fb860"
+                "cb2bbb87801bbc19"
             ]
         ]
     },
@@ -139,18 +98,197 @@
         "topic": "",
         "payload": "0",
         "payloadType": "str",
-        "x": 250,
-        "y": 600,
+        "x": 330,
+        "y": 400,
         "wires": [
             [
-                "eedea248b63fb860"
+                "cb2bbb87801bbc19"
             ]
         ]
     },
     {
+        "id": "8d6131a92d8594ac",
+        "type": "http in",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "url": "/infoRespirador",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 930,
+        "y": 180,
+        "wires": [
+            [
+                "be5eb1353c69ae1b"
+            ]
+        ]
+    },
+    {
+        "id": "524cfd725548a384",
+        "type": "template",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"id\": 123,\n    \"id_pati\": 1,\n    \"risk\": false,\n    \"label\": \"verde\",\n    \"temperature\": 37,\n    \"msgTemperature\": \"Paciente com temperatura normal\",\n    \"oxygen\": 95,\n    \"msgOxygen\": \"Paciente com oxigenio normal\",\n    \"heartBeats\": 80,\n    \"msgHeartBeats\": \"Paciente com batimentos cardiacos normais!\",\n    \"breatherSpeed\": \"{{payload}}\"\n}",
+        "output": "str",
+        "x": 1080,
+        "y": 380,
+        "wires": [
+            [
+                "651c77e8d449b68d"
+            ]
+        ]
+    },
+    {
+        "id": "651c77e8d449b68d",
+        "type": "http response",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "814e0f55ab1fe35f",
+        "type": "debug",
+        "z": "1c80ede089b4e96b",
+        "name": "Vindo do Arduino",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "05b2666ac959b671",
+        "type": "change",
+        "z": "1c80ede089b4e96b",
+        "name": "armazenar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [
+                "814e0f55ab1fe35f"
+            ]
+        ]
+    },
+    {
+        "id": "be5eb1353c69ae1b",
+        "type": "change",
+        "z": "1c80ede089b4e96b",
+        "name": "recuperar",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 240,
+        "wires": [
+            [
+                "01a1ad41f403c955"
+            ]
+        ]
+    },
+    {
+        "id": "01a1ad41f403c955",
+        "type": "function",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "func": "if (msg.payload === \"0\") {\n    msg.payload = \"desligado\";\n} else if(msg.payload === \"1\"){\n        msg.payload = \"minimo\";\n   }else if(msg.payload === \"2\" ){\n        msg.payload = \"minimo\";\n   }else if(msg.payload === \"3\" ){\n        msg.payload = \"máximo\";\n   }\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 300,
+        "wires": [
+            [
+                "524cfd725548a384",
+                "744e04a92efaa0f7"
+            ]
+        ]
+    },
+    {
+        "id": "cb2bbb87801bbc19",
+        "type": "serial out",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "serial": "723ad9d7b5b0b0cd",
+        "x": 530,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "1cab21dc57c42a40",
+        "type": "serial in",
+        "z": "1c80ede089b4e96b",
+        "name": "",
+        "serial": "723ad9d7b5b0b0cd",
+        "x": 650,
+        "y": 220,
+        "wires": [
+            [
+                "05b2666ac959b671"
+            ]
+        ]
+    },
+    {
+        "id": "744e04a92efaa0f7",
+        "type": "debug",
+        "z": "1c80ede089b4e96b",
+        "name": "Saida Function",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 300,
+        "wires": []
+    },
+    {
         "id": "723ad9d7b5b0b0cd",
         "type": "serial-port",
-        "serialport": "COM4",
+        "serialport": "COM2",
         "serialbaud": "9600",
         "databits": "8",
         "parity": "none",
