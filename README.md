@@ -13,8 +13,6 @@
 ##### MATHEUS EDUARDO PERERA RM: 85579
 ------------------
 
-###### Video explicativo Yt: 
-
-#### Softwares usados
+###### Video explicativo Yt: https://www.youtube.com/watch?v=HGCiVT_IR0Y
 
 
