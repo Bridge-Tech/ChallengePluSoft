@@ -58,7 +58,7 @@ CREATE TABLE permission(
 INSERT INTO permission (name, description, is_active) VALUES('MASTER','PERMISSÃO MAXIMA DO SISTEMA', TRUE);
 INSERT INTO permission (name, description, is_active) VALUES('VER_GRAFICOS','PERMISSÃO PARA CONSEGUIR VER GRAFICOS', TRUE);
 INSERT INTO permission (name, description, is_active) VALUES('OPERAR_MAQUINA','PERMISSÃO PARA OPERAR MAQUINAS', TRUE);
-INSERT INTO permission (name, description, is_active) VALUES('MEDCAR','PERMISSÃO PARA PODER ALTERAR MEDICAMENTOS', TRUE);
+INSERT INTO permission (name, description, is_active) VALUES('MEDICAR','PERMISSÃO PARA PODER APLICAR MEDICAMENTOS', TRUE);
 
 
 CREATE TABLE patient(
