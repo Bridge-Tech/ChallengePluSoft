@@ -1,5 +1,7 @@
 # ChallengePluSoft - Projeto AIR-PLUS
 
+## Grupo Bridge Technology
+
 ###### Projeto para fins Acadêmicos
 ------------------
 ### INTEGRANTES
@@ -10,5 +12,9 @@
 
 ##### MATHEUS EDUARDO PERERA RM: 85579
 ------------------
+
+###### Video explicativo Yt: 
+
+#### Softwares usados
 
 
