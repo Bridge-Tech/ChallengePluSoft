@@ -1,13 +1,13 @@
-
 CREATE TABLE office(
 	id INT PRIMARY KEY auto_increment,
-  	name VARCHAR(60) NOT NULL,
+  	name VARCHAR(100) NOT NULL,
   	description VARCHAR(200) NOT NULL,
   	is_active BOOLEAN DEFAULT TRUE
 );
 
-INSERT INTO office (name, description, is_active) VALUES('ENFERMARIA','DEPARTAMENTO DE ENFERMARIA', TRUE);
-INSERT INTO office (name, description, is_active) VALUES('ANESTESISTAS','DEPARTAMENTO DOS MEDICOS ANESTESISTAS', TRUE);
+INSERT INTO office (name, description, is_active)VALUES('ENFERMARIA','DEPARTAMENTO DE ENFERMARIA',true);
+INSERT INTO office (name, description, is_active)VALUES('PEDIATRIA','DEPARTAMENTO DE PEDIATRIA',true);
+INSERT INTO office (name, description, is_active)VALUES('PSICOLOGIA','DEPARTAMENTO DE PSICOLOGIA',true);
 
 
 CREATE TABLE employee(

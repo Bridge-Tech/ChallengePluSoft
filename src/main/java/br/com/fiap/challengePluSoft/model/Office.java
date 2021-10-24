@@ -15,7 +15,7 @@ public class Office {
 
 	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank @Size(max=60)
+	@NotBlank @Size(max=100)
 	private String name;
 	@NotBlank @Size(max=200)
 	private String description; 
