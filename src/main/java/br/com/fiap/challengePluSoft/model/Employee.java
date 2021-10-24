@@ -36,7 +36,7 @@ public class Employee implements UserDetails{
 	private String sex;
 	@NotBlank @Size(max=100, message="User não pode ter mais de 100 caracteres")
 	private String user;
-	@NotBlank @Size(max=60, min = 1, message="Senha não pode conter mais que 10 caracteres e não pode conter somente 1 caractere")
+	@NotBlank @Size(max=60, min = 1, message="Senha não pode conter mais que 60 caracteres e não pode conter somente 1 caractere")
 	private String password;
 	@ManyToMany(fetch= FetchType.EAGER)
 	private Collection<Role> roles;

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -13,12 +14,20 @@ import lombok.Data;
 @Entity
 public class Monitoring {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@NotBlank @Size(max = 100)
-	private String monitoringText;
-	@NotBlank
-	private Boolean isActive;
 	
+	  @Id private Long id;
+	  //@ManyToOne 
+	  //private Patient patient; 
+//	  
+//	  private Boolean risk; 
+//	  private String label;
+//	  private Float temperature;
+//	  private String msgTemperature;
+//	  private Float oxygen;
+//	  private String msgOxygen;
+//	  private Float heartBeats;
+//	  private String msgHeartBeats;
+//	  private Integer breatherSpeed;
+//	 
 	
 }

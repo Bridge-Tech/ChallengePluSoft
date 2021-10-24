@@ -72,7 +72,7 @@ CREATE TABLE patient(
 );
 
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Gilberto','12/09/2001','M',null, 2, TRUE);
-INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Allan','17/02/1967','M',null, 2, TRUE);
+INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Allan','17/02/1967','M',null, 1, TRUE);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('João','11/06/1900','M' ,null, null, TRUE);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Sahra','03/03/1971','F',null, null, TRUE);
 INSERT INTO patient (name, birthdate, sex, employee_id, note_id, is_active)VALUES('Drica','30/11/2004','F',null, null, TRUE);
@@ -85,7 +85,7 @@ CREATE TABLE note(
 	employee_id int,
 	date VARCHAR(50)
 );
-INSERT INTO note (description, employee_id, date) VALUES ('Aplicada medicação para tratamento da irritações na pele ou descoloração dos dedos dos pés', 3 ,'29/09/2021');
+INSERT INTO note (description, employee_id, date) VALUES ('Aplicada medicação para tratamento da irritações na pele e descoloração dos dedos dos pés', 3 ,'29/09/2021');
 INSERT INTO note (description, employee_id, date) VALUES ('Aplicada medicação para tratamento do desarranjo do intestino', 3 ,'06/10/2021');
 
 CREATE TABLE STATES

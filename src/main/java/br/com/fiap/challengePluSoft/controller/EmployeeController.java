@@ -47,14 +47,16 @@ public class EmployeeController {
 		return "employeeNew";
 	}
 	
-	@PostMapping("/employee")
+	@PostMapping("/employees")
 	public String save (@Valid Employee employee, BindingResult result,  RedirectAttributes redirect) {
 		
 		if(result.hasErrors()) {
 			System.out.println("Não salvando Funcionário...");
 			return "employeeNew";
 		}
+		employee.setIs_active(true);
 		employee.setPassword(AuthenticationService.getPasswordEncoder().encode(employee.getPassword()));
+		log.info(employee.toString());
 		System.out.println("Salvando Fucionário...");
 		repository.save(employee);
 		return "redirect:login";

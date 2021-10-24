@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head th:include="_template :: head">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+
 <meta charset="UTF-8">
 </head>
 <body>
@@ -79,14 +81,26 @@
 						</div>
 					</div>
 				</div>
-				<div sec:authorize="hasRole('ROLE_DOCTOR')" class="col-sm-12 border-success" style="margin-top: 2em;">
+				<div sec:authorize="hasRole('ROLE_DOCTOR')"
+					class="col-sm-12 border-success" style="margin-top: 2em;">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title">Área Médica</h5>
-							<p class="card-text">área destinada a prestações de especialista no tratamento do paciente.</p>
-							<p> Aqui ficam os controles
-							dos equipamenos médicos que são vitais para o tratamento desse paciente</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+							<div class="alert alert-danger d-flex align-items-center"
+								role="alert">
+								
+								<div class="row"style="align-self: center;"><i class="bi bi-exclamation-triangle"></i><h5>Área Médica</h5>
+								<p class="card-text">Área destinada a prestações de
+								especialista no tratamento do paciente.</p>
+								<p>Aqui ficam os controles dos equipamenos médicos que são
+								vitais para o tratamento desse paciente</p>
+								
+								</div>
+								
+							</div>
+							<div>
+								<label for="customRange3" class="form-label">Velocidade Respirador</label>
+								<input type="range" class="form-range" min="0" max="3" step="1" id="customRange3">
+							</div>
 						</div>
 					</div>
 				</div>
