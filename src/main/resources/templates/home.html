@@ -32,11 +32,12 @@
 	</div>
 
 	<section class="card">
-		<div class="home-info"
-			style="text-align-last: center; margin-left: auto; margin-right: auto;">
+		<div class="home-info">
 			<h1 class="h1">Bem Vindo!</h1>
 			<h3 class="h3" th:text="${#authentication.getPrincipal().getName()}"></h3>
 		</div>
+		<div class="card-footer text-muted">AIR-PLUS solution build by
+			Bridge Technology</div>
 	</section>
 </body>
 </html>
