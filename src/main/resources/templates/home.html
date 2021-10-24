@@ -7,13 +7,14 @@
 	rel="stylesheet"
 	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{~/css/home.css}">
 <meta charset="UTF-8">
 <title>Air-plus</title>
 </head>
-<body>
+<body class="body">
 	<div class="p-2 m-2">
 
-		<ul class="nav align-middle" style="justify-content: center;">
+		<ul class="nav align-middle">
 			<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a
 				class="nav-link" href="/employees">Funcionários</a></li>
 			<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a
@@ -33,29 +34,9 @@
 	<section class="card">
 		<div class="home-info"
 			style="text-align-last: center; margin-left: auto; margin-right: auto;">
-			<h1>Bem Vindo!</h1>
-			<h3 th:text="${#authentication.getPrincipal().getName()}"></h3>
+			<h1 class="h1">Bem Vindo!</h1>
+			<h3 class="h3" th:text="${#authentication.getPrincipal().getName()}"></h3>
 		</div>
 	</section>
-	<!--<section class="card">
-		<div class="align-justify-center p-5 m-5">
-			<table class="table table-bordered shadow p-3 mb-5 bg-body rounded rounded-3">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Monitoramento</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="patient : ${patients}">
-						<th th:text="${patient.id}"></th>
-						<td th:text="${patient.name}"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</section>  -->
-
-
 </body>
 </html>
